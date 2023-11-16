@@ -2,7 +2,7 @@ import requests
 import os
 import datetime
 
-user_api = os.environ.get('FETCH_NEWS_API_KEY')
+USER_API = os.environ.get('FETCH_NEWS_API_KEY')
 
 #Simple display function to output JSON data to console
 def display(news_title, news_source, news_url):
@@ -46,16 +46,17 @@ def fetchNews_Everything_Source(source, api_key, date = datetime.date.today(),):
 print("----------------------------------------------------------------------")
 print("News for today in GB")   #Needs fancy title, use another param to have appropriate matching title
 print("----------------------------------------------------------------------")
-
+#Would be good to provide more customisation when searching for news, currently very basic
 print("Options are: 1 = Top headlines in your country || 2 = Top headlines from a given source || 3 = Search for specific source or articles using keyword")
-user_option = input("What news would you like today? ")
 
+#Ideally would like to come in with visual display at some point, either TKInter or other options
+user_option = input("What news would you like today? ")
 if(user_option == '1'):
-    fetchNews_TopHeadlines_Country('gb', user_api)
+    fetchNews_TopHeadlines_Country('gb', USER_API)
 elif(user_option == '2'):
-    fetchNews_TopHeadlines_Sources('gb', user_api)
+    fetchNews_TopHeadlines_Sources('gb', USER_API)
 elif(user_option == '3'):
-    fetchNews_Everything_Source('gb', user_api)
+    fetchNews_Everything_Source('gb', USER_API)
 else:
     print("Error, wrong option provided.")
     

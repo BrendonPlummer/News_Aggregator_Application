@@ -37,7 +37,7 @@ def fetchNews_TopHeadlines_Sources(source, api_key): #Headlines just from a spec
     fetch_display(fetchNews)    
     
 def fetchNews_Everything_Source(source, api_key, date = datetime.date.today(),): #Search for news articles that mention a specific topic or keyword
-    FETCHNEWS_EVERYTHING_SOURCE_API_KEY = "https://newsapi.org/v2/everything?q=" + source + "&from=" + date + "&sortBy=popularity&apiKey=" + api_key
+    FETCHNEWS_EVERYTHING_SOURCE_API_KEY = "https://newsapi.org/v2/everything?q=" + source + "&from=" + str(date) + "&sortBy=popularity&apiKey=" + api_key
     fetchNews = requests.get(FETCHNEWS_EVERYTHING_SOURCE_API_KEY).json()
     fetch_display(fetchNews)  
         
@@ -54,9 +54,9 @@ user_option = input("What news would you like today? ")
 if(user_option == '1'):
     fetchNews_TopHeadlines_Country('gb', USER_API)
 elif(user_option == '2'):
-    fetchNews_TopHeadlines_Sources('gb', USER_API)
+    fetchNews_TopHeadlines_Sources('Apple', USER_API)
 elif(user_option == '3'):
-    fetchNews_Everything_Source('gb', USER_API)
+    fetchNews_Everything_Source('bbc-news', USER_API)
 else:
     print("Error, wrong option provided.")
     

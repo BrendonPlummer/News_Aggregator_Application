@@ -11,16 +11,27 @@ def display(news_title, news_source, news_url):
     print("Source: " + news_source)
     print("URL: {0}".format(news_url))
     print("----------------------------------------------------------------------")
+    
+def fancyDisplay(News):
+    for articles in sorted(News):
+        print()
 
 #Seperated from other functions for readability and ease of use, function takes API JSON and loops through and displays
 def fetch_display(API_JSON):
     if(API_JSON['status'] == "ok"):
         total_results = len(API_JSON['articles'])
         for x in range(total_results - 1):
-            news_title = API_JSON['articles'][x]['title']
-            news_source = API_JSON['articles'][x]['source']['name']
-            news_url = API_JSON['articles'][x]['url']
-            display(news_title, news_source, news_url)
+            # news_title = API_JSON['articles'][x]['title']
+            # news_source = API_JSON['articles'][x]['source']['name']
+            # news_url = API_JSON['articles'][x]['url']
+            # display(news_title, news_source, news_url) #Load into array to then sort
+            
+            News = {
+                API_JSON['articles'][x]['title']:
+                [API_JSON['articles'][x]['source']['name'], 
+                API_JSON['articles'][x]['url']]
+                }
+        print(News)
     else:
         error_message = API_JSON
         print("Failure to fetch data from API. Error: {0}".format(error_message))  
